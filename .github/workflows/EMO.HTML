@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMO银行-寿命气运银行</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>EMO银行-寿命气运银行</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#currency">货币介绍</a></li>
+      <li><a href="#deposit">存款套餐</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="home">
+      <h2>欢迎来到EMO银行</h2>
+      <p>我们是一家虚构的银行，提供寿命和气运的虚拟货币服务。</p>
+    </section>
+
+    <section id="currency">
+      <h2>货币介绍</h2>
+      <p>寿命和气运是我们提供的虚拟货币，具有以下特点：</p>
+      <ul>
+        <li>寿命：代表人的寿命，可用于购买与寿命相关的服务或商品。</li>
+        <li>气运：代表人的运势，可用于购买与气运相关的服务或商品。</li>
+      </ul>
+      <p>我们提供多种兑换方式，1气运=0.114514寿命。</p>
+    </section>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EMO银行</title>
+  </head>
+  <body>
+    <h1>EMO银行</h1>
+    <p>欢迎来到EMO银行，请输入您的气运和寿命：</p>
+    <label for="qiyun">气运：</label>
+    <input type="number" id="qiyun" name="qiyun"><br><br>
+    <label for="shouming">寿命：</label>
+    <input type="number" id="shouming" name="shouming"><br><br>
+    <button onclick="save()">储存</button>
+    <button onclick="load()">读取</button>
+    <p>储存代码：</p>
+    <textarea id="code" rows="4" cols="50"></textarea>
+    <script>
+      function save() {
+        var qiyun = document.getElementById("qiyun").value;
+        var shouming = document.getElementById("shouming").value;
+        var code = "qiyun:" + qiyun + ",shouming:" + shouming;
+        document.getElementById("code").innerHTML = encode(code);
+        document.getElementById("qiyun").value = "";
+        document.getElementById("shouming").value = "";
+      }
+      
+      function load() {
+        var code = decode(document.getElementById("code").value);
+        if (code != "") {
+          var qiyun = code.substring(code.indexOf("qiyun:") + 6, code.indexOf(","));
+          var shouming = code.substring(code.indexOf("shouming:") + 9);
+          document.getElementById("qiyun").value = qiyun;
+          document.getElementById("shouming").value = shouming;
+        }
+      }
+
+      function encode(str) {
+        var result = "";
+        for (var i = 0; i < str.length; i++) {
+          result += String.fromCharCode(str.charCodeAt(i) + 3);
+        }
+        return result;
+      }
+
+      function decode(str) {
+        var result = "";
+        for (var i = 0; i < str.length; i++) {
+          result += String.fromCharCode(str.charCodeAt(i) - 3);
+        }
+        return result;
+      }
+    </script>
+  </body>
+</html>
